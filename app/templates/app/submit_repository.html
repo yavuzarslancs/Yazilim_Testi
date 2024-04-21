@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Daha modern bir yazı tipi */
+            background-color: black; /* Siyah arka plan rengi */
+            color: white; /* Beyaz yazı rengi */
+            padding: 20px; /* İç boşluk */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #333; /* Koyu gri arka plan rengi */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Daha belirgin gölge */
+            width: 300px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #555; /* Daha koyu bir çerçeve rengi */
+            background-color: #222; /* Çok koyu gri arka plan rengi */
+            color: white; /* Metin rengi beyaz */
+            border-radius: 4px;
+            box-sizing: border-box; /* Border ve padding'i genişliğe dahil eder */
+        }
+        button {
+            background-color: #007BFF; /* Mavi arka plan rengi */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3; /* Daha koyu mavi */
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

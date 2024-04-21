@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Repo URL Giriniz</title>
+    <style>
+        body {
+            background-color: black;
+            color: white; /* Metin rengini beyaz yapar */
+            font-family: Arial, sans-serif; /* Modern bir yazı tipi */
+            text-align: center; /* Metinleri ve öğeleri ortalar */
+        }
+        form {
+            display: inline-block; /* Formu sayfa ortasına alır */
+            margin-top: 20px; /* Üstten boşluk */
+        }
+        input, button {
+            margin-top: 10px; /* Düğme ve input alanı arasında boşluk */
+            padding: 10px; /* Düğme ve input içi boşluk */
+            font-size: 16px; /* Yazı boyutu */
+            background-color: #555; /* Input arka plan rengi */
+            color: white; /* Input metin rengi */
+            border: none; /* Çerçeve kaldırılır */
+            width: 100%; /* Tam genişlik */
+        }
+        button {
+            cursor: pointer; /* Fare imlecini düğme üzerine getirdiğinde el simgesi */
+            background-color: #555; /* Düğme arka plan rengi */
+            color: white; /* Düğme metin rengi */
+        }
+        button:hover {
+            background-color: #777; /* Düğme üzerine gelindiğinde renk değişikliği */
+        }
+        .error {
+            color: red; /* Hata mesajı rengi */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Repo URL'si Girin</h1>
+    <form method="post" action="{% url 'submit_repository' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.errors %}
+            <div class="error">Lütfen hataları düzeltin:</div>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        <button type="submit">Gönder</button>
+        <a href="{% url 'show_all_files' %}">
+            <button type="button">Veri Tabanını Göster</button>
+        </a>        
+    </form>
+</body>
+</html>

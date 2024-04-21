@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tüm Java Dosyaları</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Daha modern bir yazı tipi */
+            background-color: black; /* Arka plan rengini siyah yapar */
+            color: white; /* Metin rengini beyaz yapar */
+            padding: 20px; /* İç boşluk */
+        }
+        h1 {
+            text-align: center; /* Başlık metnini ortalar */
+            color: #ccc; /* Başlık için açık gri renk */
+        }
+        table {
+            width: 100%; /* Tabloyu sayfanın tam genişliğine uzatır */
+            border-collapse: collapse; /* Çift çizgileri tek çizgi yapar */
+            margin: 20px 0; /* Üst ve altta boşluk bırakır */
+        }
+        th, td {
+            padding: 10px; /* Hücre içi boşluk */
+            border: 1px solid #777; /* Hücre çerçeveleri için koyu gri renk */
+            text-align: left; /* Metinleri sola hizalar */
+        }
+        th {
+            background-color: #333; /* Başlık arka plan rengi */
+            color: white; /* Başlık metin rengi */
+            font-size: 16px; /* Başlık font boyutu */
+        }
+        td {
+            background-color: #222; /* Hücreler için çok koyu gri arka plan rengi */
+            color: white; /* Hücre metin rengi */
+            font-size: 14px; /* Hücre font boyutu */
+        }
+        tr:nth-child(even) {
+            background-color: #333; /* Çift sıralar için orta koyu gri arka plan rengi */
+        }
+        tr:hover {
+            background-color: #555; /* Fare ile üzerine gelindiğinde arka plan rengi */
+        }
+    </style>
+</head>
+<body>
+    <h1>Tüm Java Dosyaları</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Dosya Adı</th>
+                <th>LOC</th>
+                <th>Kod Satır Sayısı</th>
+                <th>Javadoc Yorum Sayısı</th>
+                <th>Diğer Yorum Sayısı</th>
+                <th>Fonksiyon Sayısı</th>
+                <th>Yorum Sapma Yüzdesi</th>
+                <th>Repo URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for java_file in java_files %}
+            <tr>
+                <td>{{ java_file.file_name }}</td>
+                <td>{{ java_file.loc }}</td>
+                <td>{{ java_file.code_line_count }}</td>
+                <td>{{ java_file.javadoc_comment_count }}</td>
+                <td>{{ java_file.other_comment_count }}</td>
+                <td>{{ java_file.function_count }}</td>
+                <td>{{ java_file.comment_deviation_percentage }}</td>
+                <td>{{ java_file.repo_url }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">Veri bulunamadı.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
